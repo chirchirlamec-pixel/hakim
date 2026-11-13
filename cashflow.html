@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6412a0"><link rel="icon" href="logo-mark.svg" type="image/svg+xml">
+<title>cashflow.site</title>
+<style>
+:root{--purple:#7412a0;--deep:#43106e;--ink:#20233d;--muted:#687087;--line:#dce0ec;--bg:#f3f7ff;--green:#20bf72;--gold:#f4ad55}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--bg)}
+header{height:72px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 max(5%,calc((100% - 1120px)/2));box-shadow:0 2px 15px #1b17400d;position:sticky;top:0;z-index:3}
+.brand{font-weight:900;font-size:24px;letter-spacing:-1px;color:var(--purple)}.brand span{color:#20bf72}
+nav{display:flex;gap:22px;align-items:center}nav a{color:#555d75;text-decoration:none;font-weight:650;font-size:14px}
+.btn{border:0;border-radius:14px;padding:14px 20px;font-weight:800;cursor:pointer;background:linear-gradient(110deg,#397fb0,#8500a4);color:#fff;box-shadow:0 10px 20px #7412a022}
+.btn.light{background:#f2eafa;color:var(--purple);box-shadow:none}.btn:active{transform:translateY(1px)}
+.hero{background:linear-gradient(130deg,#68118d,#941d88 55%,#4c176e);color:white;padding:65px 5% 80px;text-align:center}
+.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.06;margin:0 auto 15px;max-width:760px;letter-spacing:-2px}
+.hero p{font-size:18px;line-height:1.6;color:#f2e8fa;max-width:650px;margin:0 auto 25px}
+.pill{display:inline-block;background:#ffffff20;border:1px solid #ffffff35;border-radius:99px;padding:8px 14px;font-size:12px;font-weight:800;letter-spacing:.7px;margin-bottom:20px}
+.wrap{max-width:1120px;margin:auto;padding:0 22px}
+.section{padding:48px 0}.section h2{text-align:center;font-size:30px;margin:0 0 8px}.sub{text-align:center;color:var(--muted);margin:0 0 28px}
+.profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.profile{background:#fff;border-radius:26px;padding:25px 22px 22px;text-align:center;box-shadow:0 8px 25px #1b17400b;border:1px solid #edf0f7}
+.avatar{height:116px;width:116px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(135deg,#c8e5f5,#e8d8f5);display:grid;place-items:center;font-size:48px;border:5px solid #fff;box-shadow:0 3px 15px #18204a18}
+.profile h3{font-size:25px;margin:8px 0}.country{color:var(--muted);font-size:16px;margin:0 0 14px}
+.status{display:inline-block;background:#fff0dc;color:#ad6b2d;border-radius:99px;padding:9px 14px;font-weight:800;font-size:12px;letter-spacing:.4px;margin-bottom:17px}
+.status.green{background:#d9fbe4;color:#08743d}.profile .btn{display:block;width:100%;font-size:15px}
+.tag{font-size:12px;color:#777f94;margin-top:13px}
+.auth-area{background:linear-gradient(140deg,#7412a0,#49136e);padding:55px 18px}
+.auth{max-width:620px;margin:auto;background:#fff;border-radius:30px;padding:34px;box-shadow:0 15px 45px #19072d35}
+.logo-mark{height:62px;width:62px;border-radius:18px;margin:auto;background:linear-gradient(140deg,#3992b5,#7b13a4);display:grid;place-items:center;color:#fff;font-size:30px;font-weight:900;box-shadow:0 7px 18px #7412a033}
+.auth h2{text-align:center;font-size:32px;margin:16px 0 7px}.auth .intro{text-align:center;color:var(--muted);margin:0 0 25px}
+.sponsor{background:#f1f3fb;padding:15px 18px;border-radius:15px;margin-bottom:20px;color:#596079;font-weight:650}.sponsor b{color:#282c49;margin-left:6px}
+form{display:grid;gap:13px}.field{width:100%;padding:17px;border:2px solid #d8ddeb;border-radius:15px;font:inherit;font-size:16px;outline:none;background:#fff}.field:focus{border-color:#8b43b1}
+form .btn{padding:17px;font-size:17px;margin-top:7px}.switch{text-align:center;color:#626980;margin:22px 0 0}.switch a{color:var(--purple);font-weight:850;text-decoration:none}
+footer{background:#17142a;color:#d8d4e5;padding:28px 5%;text-align:center;font-size:13px}footer b{color:#fff}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1e2037;color:#fff;padding:13px 18px;border-radius:12px;display:none;z-index:5;max-width:90%;text-align:center}
+@media(max-width:800px){.profiles{grid-template-columns:repeat(2,1fr)}nav{gap:12px}nav a:not(.navbtn){display:none}}
+@media(max-width:560px){header{height:62px;padding:0 17px}.brand{font-size:21px}.hero{padding:48px 20px 60px}.profiles{grid-template-columns:1fr}.profile{max-width:420px;width:100%;margin:auto}.auth{padding:26px 20px}.auth h2{font-size:28px}.section{padding:38px 0}}
+.earn{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.earn>*{min-width:0}
+.card{background:#fff;border-radius:26px;padding:26px 24px;border:1px solid #edf0f7;box-shadow:0 8px 25px #1b17400b}
+.card h3{font-size:22px;margin:10px 0 8px}.card p{color:var(--muted);line-height:1.6;margin:0 0 10px}
+.num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#f2eafa;color:var(--purple);font-weight:900}
+.reward{font-size:44px;font-weight:900;letter-spacing:-2px;color:var(--purple);margin:6px 0 2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none}.chips li{background:#f1f3fb;border-radius:99px;padding:8px 13px;font-weight:700;font-size:13px;color:#43476a}
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:14px}.week>*{min-width:0}
+.day{border:2px dashed #d8ddeb;border-radius:16px;padding:12px 8px;text-align:center;font-size:12px;color:var(--muted);background:#fff}.day b{display:block;font-size:14px;color:var(--ink);margin-bottom:4px}
+.day.today{border:2px solid var(--purple);background:#f8f1fd}
+.day svg{width:100%;height:auto;max-width:130px;display:block;margin:0 auto 10px}.day{font-weight:600}.ad{display:block;margin-top:6px;font-size:11px;font-weight:800;letter-spacing:.5px;color:#ad6b2d;text-transform:uppercase}
+.fine{font-size:12px;color:#777f94}
+#rayBtn{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:30;border:0;border-radius:99px;padding:14px 20px;font:800 15px Inter,system-ui,sans-serif;color:#fff;background:linear-gradient(110deg,#397fb0,#8500a4);box-shadow:0 10px 24px #7412a055;cursor:pointer}
+#rayBtn[hidden],#rayBox[hidden],#rayLead[hidden]{display:none}
+#rayBox{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:31;width:min(380px,calc(100vw - 24px));max-height:min(620px,calc(100vh - 24px));display:flex;flex-direction:column;background:#fff;border-radius:22px;box-shadow:0 18px 50px #19072d55;overflow:hidden;border:1px solid #e3e6f2}
+#rayBox .rh{display:flex;justify-content:space-between;align-items:center;gap:8px;background:linear-gradient(110deg,#68118d,#941d88);color:#fff;padding:14px 16px}
+#rayBox .rh small{display:block;opacity:.85;font-size:12px}#rayBox .rh button{background:none;border:0;color:#fff;font-size:18px;cursor:pointer}
+#rayLog{flex:1;min-height:120px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+#rayLog .m{max-width:86%;padding:10px 13px;border-radius:16px;font-size:14px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+#rayLog .bot{background:#f1f3fb;align-self:flex-start}#rayLog .user{background:#7412a0;color:#fff;align-self:flex-end}
+.rchips{display:flex;gap:6px;overflow-x:auto;padding:0 14px 8px}.rchips button{flex:none;border:1px solid #d8ddeb;background:#fff;border-radius:99px;padding:7px 12px;font:600 12px Inter,system-ui,sans-serif;color:#43476a;cursor:pointer}
+#rayForm{display:flex;gap:8px;padding:0 14px 10px}#rayForm input{flex:1;min-width:0;padding:11px 12px;border:2px solid #d8ddeb;border-radius:12px;font:inherit;font-size:14px}#rayForm .btn{padding:10px 14px;font-size:14px}
+.rcta{display:flex;gap:8px;padding:0 14px 14px;flex-wrap:wrap}.rcta .btn{flex:1;padding:11px 12px;font-size:13px;box-shadow:none}
+#rayLead{display:grid;gap:8px;padding:0 14px 14px}#rayLead .field{padding:11px;font-size:14px}
+#rayBtn:focus-visible,#rayBox button:focus-visible,#rayBox input:focus-visible{outline:3px solid #8b43b1;outline-offset:2px}
+#gate{position:fixed;inset:0;z-index:20;background:linear-gradient(140deg,#7412a0,#49136e);overflow:auto;display:flex;align-items:flex-start;justify-content:center;padding:28px 16px}
+#gate[hidden]{display:none}
+.gbox{background:#fff;border-radius:26px;padding:28px 24px;max-width:480px;width:100%;box-shadow:0 15px 45px #19072d35}
+.gbox h2{text-align:center;font-size:26px;margin:14px 0 14px}.gbox ol{padding-left:20px;margin:0 0 16px;line-height:1.6}
+.gbox .pay{background:#f1f3fb;border-radius:14px;padding:12px 14px;margin:10px 0 16px;font-weight:700;overflow-wrap:anywhere}
+.gbox .st{text-align:center;padding:14px;border-radius:14px;font-weight:700;margin-bottom:14px}
+.gbox .wait{background:#fff0dc;color:#ad6b2d}.gbox .no{background:#fde3e3;color:#a32a2a}
+@media(max-width:800px){.earn{grid-template-columns:1fr}.week{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<header>
+  <a class="brand" href="#home" style="text-decoration:none"><svg viewBox="0 0 128 128" width="34" height="34" aria-hidden="true" style="vertical-align:-9px;margin-right:8px">
+<defs><linearGradient id="hb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3992b5"/><stop offset="1" stop-color="#7412a0"/></linearGradient></defs>
+<rect width="128" height="128" rx="30" fill="url(#hb)"/>
+<rect x="28" y="72" width="16" height="28" rx="4" fill="#fff"/>
+<rect x="52" y="56" width="16" height="44" rx="4" fill="#fff"/>
+<rect x="76" y="38" width="16" height="62" rx="4" fill="#fff"/>
+<path d="M26 58C46 54 62 38 88 24" fill="none" stroke="#20bf72" stroke-width="7" stroke-linecap="round"/>
+<path d="M74 21l18 1-5 17" fill="none" stroke="#20bf72" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>cashflow<span>.</span>site</a>
+  <nav><a href="#tutors">Find a tutor</a><a href="#earn">Earn</a><a href="#how">How it works</a><a href="calculator.html" target="_blank">Cash flow tool</a><a class="navbtn" href="#join"><button class="btn light">Create account</button></a></nav>
+</header>
+<main id="home">
+<section class="hero">
+  <div class="pill">LANGUAGE LEARNING COMMUNITY</div>
+  <h1>Share your language.<br>Open a new world.</h1>
+  <p>Meet Swahili learners, connect with language tutors and practise conversations with people around the world.</p>
+  <a href="#tutors"><button class="btn">Explore teachers&nbsp; →</button></a>
+</section>
+<section class="section wrap" id="tutors">
+  <h2>Meet our community</h2><p class="sub">Discover sample learner and tutor profiles.</p>
+  <div class="profiles">
+    <article class="profile"><div class="avatar">👩🏻‍🏫</div><h3>Emma, 24</h3><p class="country">🇺🇸 &nbsp; USA</p><span class="status">● &nbsp; LOOKING TO TALK</span><button class="btn" onclick="notice('Create an account to contact Emma.')">TEACH KISWAHILI</button><p class="tag">Sample profile · English speaker</p></article>
+    <article class="profile"><div class="avatar">👨🏻‍💻</div><h3>James, 28</h3><p class="country">🇬🇧 &nbsp; UK</p><span class="status green">● &nbsp; ACTIVE NOW</span><button class="btn" onclick="notice('Create an account to connect with James.')">PRACTISE SWAHILI</button><p class="tag">Sample profile · Beginner learner</p></article>
+    <article class="profile"><div class="avatar">👩🏾‍🎓</div><h3>Amina, 22</h3><p class="country">🇰🇪 &nbsp; Kenya</p><span class="status green">● &nbsp; AVAILABLE</span><button class="btn" onclick="notice('Create an account to connect with Amina.')">MEET A TUTOR</button><p class="tag">Sample profile · Swahili tutor</p></article>
+  </div>
+</section>
+<section class="section" id="how" style="background:#fff">
+ <div class="wrap"><h2>How it works</h2><p class="sub">A simple way to start learning and teaching.</p>
+ <div class="profiles">
+  <article class="profile"><div class="avatar">📝</div><h3>1. Join</h3><p class="country">Create your profile and choose the languages you know or want to learn.</p></article>
+  <article class="profile"><div class="avatar">🤝</div><h3>2. Connect</h3><p class="country">Find people with shared learning goals and start a conversation.</p></article>
+  <article class="profile"><div class="avatar">🌍</div><h3>3. Learn</h3><p class="country">Practise regularly and grow your confidence in a new language.</p></article>
+ </div></div>
+</section>
+<section class="section wrap" id="earn">
+  <h2>Ways to earn and advertise</h2><p class="sub">New features planned for members and sellers.</p>
+  <div class="earn">
+   <article class="card"><span class="num">1</span><h3>Paid surveys</h3><p>Share your habits in short surveys on three topics.</p>
+    <ul class="chips"><li>Daily expenditure</li><li>Mobile data usage</li><li>WhatsApp usage</li></ul></article>
+   <article class="card"><span class="num">2</span><h3>Advertise and earn</h3><div class="reward">KSh 15</div><p>Proposed reward per eligible, verified advertisement view.</p><p class="fine">Subject to campaign funding and terms.</p></article>
+   <article class="card"><span class="num">3</span><h3>Product advertising</h3><p>Herbal wellness products and other sponsored listings.</p><p class="fine">Every product and seller is verified before a listing goes live.</p></article>
+   <article class="card"><span class="num">4</span><h3>Weekday product rotation</h3><p>One featured product per day, Monday through Friday.</p>
+    <p class="fine">See this week's featured ads below.</p></article>
+  </div>
+  <h2 style="margin-top:44px">Featured this week</h2><p class="sub">One sample ad per weekday. Today's ad is highlighted.</p>
+  <div class="week" id="week">
+   <article class="day"><svg viewBox="0 0 120 120" role="img" aria-label="Illustration of a tea tin"><rect width="120" height="120" rx="14" fill="#e4f4e9"/><rect x="32" y="34" width="56" height="68" rx="8" fill="#2f8f5b"/><rect x="28" y="26" width="64" height="14" rx="5" fill="#1f6b42"/><path d="M60 82c-12-4-14-16-4-24 12 4 14 16 4 24z" fill="#d9f2e1"/><path d="M60 82V62" stroke="#2f8f5b" stroke-width="2"/></svg><b>Mon</b>Herbal tea blend<span class="ad">Sample ad</span></article>
+   <article class="day"><svg viewBox="0 0 120 120" role="img" aria-label="Illustration of a dropper bottle"><rect width="120" height="120" rx="14" fill="#f3ead9"/><rect x="40" y="48" width="40" height="56" rx="9" fill="#8a5a2b"/><rect x="50" y="36" width="20" height="14" rx="3" fill="#3b2a1a"/><path d="M54 36c0-12 12-12 12 0z" fill="#c9a26b"/><rect x="46" y="64" width="28" height="24" rx="4" fill="#f3ead9"/><path d="M60 84c-8-3-9-10-3-15 8 3 9 10 3 15z" fill="#3d8f5b"/></svg><b>Tue</b>Plant extract drops<span class="ad">Sample ad</span></article>
+   <article class="day"><svg viewBox="0 0 120 120" role="img" aria-label="Illustration of a herb jar"><rect width="120" height="120" rx="14" fill="#efe7f7"/><rect x="30" y="42" width="60" height="58" rx="10" fill="#d8c4ec"/><rect x="34" y="30" width="52" height="14" rx="5" fill="#7412a0"/><circle cx="48" cy="78" r="6" fill="#5a9a4a"/><circle cx="62" cy="70" r="5" fill="#7bb25f"/><circle cx="72" cy="84" r="6" fill="#4a8a3c"/><circle cx="58" cy="90" r="4" fill="#7bb25f"/></svg><b>Wed</b>Dried herb jar<span class="ad">Sample ad</span></article>
+   <article class="day"><svg viewBox="0 0 120 120" role="img" aria-label="Illustration of a powder pouch"><rect width="120" height="120" rx="14" fill="#fdf0d9"/><path d="M34 30h52l4 72H30z" fill="#e0a23a"/><rect x="32" y="26" width="56" height="10" rx="3" fill="#b97a14"/><circle cx="60" cy="68" r="15" fill="#fdf0d9"/><path d="M60 78c-9-3-10-11-3-17 9 3 10 11 3 17z" fill="#3d8f5b"/></svg><b>Thu</b>Herbal powder pouch<span class="ad">Sample ad</span></article>
+   <article class="day"><svg viewBox="0 0 120 120" role="img" aria-label="Illustration of an oil bottle"><rect width="120" height="120" rx="14" fill="#e1f0f6"/><rect x="48" y="22" width="24" height="18" rx="4" fill="#4a5a66"/><path d="M44 40h32l8 18v42a6 6 0 0 1-6 6H42a6 6 0 0 1-6-6V58z" fill="#3a8fb0"/><rect x="44" y="64" width="32" height="26" rx="4" fill="#e1f0f6"/><path d="M60 86c-8-3-9-10-3-15 8 3 9 10 3 15z" fill="#3d8f5b"/></svg><b>Fri</b>Herbal oil bottle<span class="ad">Sample ad</span></article>
+  </div>
+  <p class="tag" style="text-align:center;margin-top:18px">Planned features. No payments, surveys or listings are live yet, and the rewards shown are proposals.</p>
+</section>
+<section class="auth-area" id="join">
+ <div class="auth">
+  <div class="logo-mark" role="img" aria-label="cashflow.site logo" style="background:none;box-shadow:none"><svg viewBox="0 0 128 128" width="62" height="62">
+<defs><linearGradient id="lm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3992b5"/><stop offset="1" stop-color="#7412a0"/></linearGradient></defs>
+<rect width="128" height="128" rx="30" fill="url(#lm)"/>
+<rect x="28" y="72" width="16" height="28" rx="4" fill="#fff"/>
+<rect x="52" y="56" width="16" height="44" rx="4" fill="#fff"/>
+<rect x="76" y="38" width="16" height="62" rx="4" fill="#fff"/>
+<path d="M26 58C46 54 62 38 88 24" fill="none" stroke="#20bf72" stroke-width="7" stroke-linecap="round"/>
+<path d="M74 21l18 1-5 17" fill="none" stroke="#20bf72" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div><h2 id="formTitle">Create account</h2>
+  <p class="intro" id="formIntro">Join cashflow.site and meet the language-learning community.</p>
+  <div class="sponsor">🟣 Sponsor: <b>Hakim Ray</b></div>
+  <form id="signup">
+   <input class="field" placeholder="Username" autocomplete="username" required>
+   <select class="field" required><option value="">Choose your country</option><option>Kenya</option><option>United States</option><option>United Kingdom</option><option>Tanzania</option><option>Uganda</option><option>Other</option></select>
+   <input class="field" type="tel" placeholder="Phone number (e.g. +254...)" autocomplete="tel" required>
+   <input class="field" type="password" placeholder="Password" autocomplete="new-password" minlength="8" required>
+   <button class="btn" type="submit" id="submitBtn">Create account&nbsp; →</button>
+  </form>
+  <p class="switch">Already have an account? <a href="#" id="switch">Sign in</a></p>
+  <p class="tag" style="text-align:center">Demo interface only. Do not enter real passwords or personal details.</p>
+ </div>
+</section>
+</main>
+<footer><b>cashflow.site</b> · Admin sponsor: Hakim Ray · <a href="admin.html" target="_blank" style="color:#d8d4e5">Admin dashboard</a><br><br>© 2026 cashflow.site. Community platform concept.</footer>
+<button id="rayBtn" type="button" aria-expanded="false" aria-controls="rayBox"><span aria-hidden="true">💬</span> Ray AI</button>
+<section id="rayBox" aria-label="Ray AI chat" hidden>
+ <div class="rh"><div><b>Ray AI</b><small>Assistant for cashflow.site</small></div><button type="button" id="rayX" aria-label="Close chat">✕</button></div>
+ <div id="rayLog" aria-live="polite"></div>
+ <div class="rchips" id="rayChips"></div>
+ <form id="rayForm"><input id="rayIn" placeholder="Ask Ray AI a question" autocomplete="off" maxlength="400"><button type="submit" class="btn">Send</button></form>
+ <div class="rcta"><button type="button" class="btn" id="ctaStart">Get started</button><button type="button" class="btn light" id="ctaMsg">Message Hakim Ray</button></div>
+ <form id="rayLead" hidden><input class="field" id="ln" placeholder="Your name" required maxlength="60"><input class="field" id="lp" type="tel" placeholder="Phone number" required maxlength="20"><input class="field" id="lm" placeholder="Your message" required maxlength="300"><button class="btn" type="submit">Send to admin</button></form>
+</section>
+<script>
+(function(){
+ var KB='Site facts. cashflow.site is a community site with a KSh access fee that the admin sets and approves; members pay by M-Pesa and submit the confirmation code on the access screen, then wait for approval. Planned features: paid surveys (daily expenditure, mobile data usage, WhatsApp usage), Advertise and earn (proposed KSh 15 per eligible, verified ad view, subject to campaign funding and terms), product advertising (herbal wellness and other sponsored listings, verified first), one featured product per weekday Monday to Friday. No payments or surveys are live yet and earnings are not guaranteed. Admin sponsor: Hakim Ray.';
+ var SYS='You are Ray AI, the helpful assistant on cashflow.site, answering when the admin, Hakim Ray, is not around. Use only the facts below. Be warm, brief (under 90 words) and plain. Never promise income, never say earnings are guaranteed, never make health claims or say herbal products treat or cure anything, never ask for or accept passwords or M-Pesa PINs, and never invent prices, phone numbers or dates. For payment details tell people to use the access screen. If you do not know, say the admin will follow up and suggest the Message Hakim Ray button. End with one short next step. '+KB;
+ var btn=document.getElementById('rayBtn'),box=document.getElementById('rayBox'),log=document.getElementById('rayLog'),inp=document.getElementById('rayIn'),chips=document.getElementById('rayChips');
+ var hist=[],busy=false,sample=null;
+ function add(role,text){var d=document.createElement('div');d.className='m '+role;d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+ function open(o){box.hidden=!o;btn.setAttribute('aria-expanded',String(o));btn.hidden=o;if(o){if(!log.children.length)add('bot','Hi, I am Ray AI. I can answer questions about cashflow.site while Hakim Ray is away. How can I help?');inp.focus()}}
+ btn.onclick=function(){open(true)};document.getElementById('rayX').onclick=function(){open(false)};
+ ['How do I join?','What is the KSh 15 reward?','How do paid surveys work?','Can I advertise my product?'].forEach(function(q){var b=document.createElement('button');b.type='button';b.textContent=q;b.onclick=function(){ask(q)};chips.appendChild(b)});
+ function fallback(q){q=q.toLowerCase();
+  if(/join|register|sign|access|fee|pay|mpesa|m-pesa/.test(q))return 'To join, pay the access fee by M-Pesa, then enter your name, phone and the M-Pesa confirmation code on the access screen. The admin approves it and you get in. Tap Get started to begin.';
+  if(/15|reward|earn|view/.test(q))return 'KSh 15 is the proposed reward per eligible, verified ad view. It depends on campaign funding and terms, and earnings are not guaranteed. Tap Get started to see the details.';
+  if(/survey/.test(q))return 'Planned surveys cover daily expenditure, mobile data usage and WhatsApp usage. They are not live yet. Create an account to be ready when they open.';
+  if(/product|advert|sell|herbal|list/.test(q))return 'Sellers can request a listing. Products and sellers are verified first, and one product is featured each weekday. Use Message Hakim Ray to start a listing.';
+  return 'I am not sure about that one. Please use Message Hakim Ray and the admin will follow up.'}
+ async function ask(q){
+  if(busy||!q.trim())return;busy=true;inp.value='';add('user',q);hist.push({role:'user',content:q});
+  var d=add('bot','Thinking…');
+  try{
+   if(!sample)sample=await claude.use('sample');
+   if(!sample)throw {code:'none'};
+   var msgs=hist.slice(-8).map(function(m,i){return m});
+   msgs=[{role:'user',content:SYS+'\n\nConversation:\n'+msgs.map(function(m){return (m.role==='user'?'Customer: ':'Ray AI: ')+m.content}).join('\n')+'\n\nReply as Ray AI to the last customer message only.'}];
+   var r=await sample(msgs,{cache:false,onText:function(t){if(t&&t.text&&t.text!=='Thinking...')d.textContent=t.text}});
+   var out=(r&&r.text||'').trim()||fallback(q);d.textContent=out;hist.push({role:'assistant',content:out});
+  }catch(e){var f=fallback(q);d.textContent=f;hist.push({role:'assistant',content:f})}
+  log.scrollTop=log.scrollHeight;busy=false;
+ }
+ document.getElementById('rayForm').onsubmit=function(e){e.preventDefault();ask(inp.value)};
+ document.getElementById('ctaStart').onclick=function(){open(false);var g=document.getElementById('gate');if(g&&!g.hidden){g.scrollTop=0}else{location.hash='#join';var j=document.getElementById('join');if(j)j.scrollIntoView({behavior:'smooth'})}};
+ document.getElementById('ctaMsg').onclick=function(){var f=document.getElementById('rayLead');f.hidden=!f.hidden;if(!f.hidden)document.getElementById('ln').focus()};
+ document.getElementById('rayLead').onsubmit=function(e){e.preventDefault();
+  var L=[];try{L=JSON.parse(localStorage.getItem('cashflow-leads-v1'))||[]}catch(x){}
+  L.push({id:Date.now(),name:document.getElementById('ln').value.trim(),phone:document.getElementById('lp').value.trim(),msg:document.getElementById('lm').value.trim(),at:new Date().toISOString()});
+  try{localStorage.setItem('cashflow-leads-v1',JSON.stringify(L))}catch(x){}
+  this.reset();this.hidden=true;add('bot','Thanks. Your message is saved for Hakim Ray, who will follow up.');
+ };
+})();
+</script>
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gt" hidden>
+ <div class="gbox">
+  <div class="logo-mark" role="img" aria-label="cashflow.site logo" style="background:none;box-shadow:none"><svg viewBox="0 0 128 128" width="62" height="62">
+<defs><linearGradient id="lm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3992b5"/><stop offset="1" stop-color="#7412a0"/></linearGradient></defs>
+<rect width="128" height="128" rx="30" fill="url(#lm)"/>
+<rect x="28" y="72" width="16" height="28" rx="4" fill="#fff"/>
+<rect x="52" y="56" width="16" height="44" rx="4" fill="#fff"/>
+<rect x="76" y="38" width="16" height="62" rx="4" fill="#fff"/>
+<path d="M26 58C46 54 62 38 88 24" fill="none" stroke="#20bf72" stroke-width="7" stroke-linecap="round"/>
+<path d="M74 21l18 1-5 17" fill="none" stroke="#20bf72" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>
+  <h2 id="gt">Access fee: KSh <span id="gfee">100</span></h2>
+  <div id="gbody"></div>
+  <p class="tag" style="text-align:center">The fee is for site access only. It is not an investment, and earnings from surveys or ads are not guaranteed. Prototype: approval is stored in this browser.</p>
+ </div>
+</div>
+<div id="toast" role="status"></div>
+<script>
+function notice(message){const t=document.getElementById('toast');t.textContent=message;t.style.display='block';setTimeout(()=>t.style.display='none',3200)}
+(function(){var d=new Date().getDay();if(d>=1&&d<=5){document.querySelectorAll('#week .day')[d-1].classList.add('today')}})();
+(function(){
+ var AK='cashflow-access-v1',MK='cashflow-myreq';
+ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+ function load(){var a;try{a=JSON.parse(localStorage.getItem(AK))}catch(e){}a=a||{};a.fee=a.fee||100;a.payee=a.payee||'';a.requests=a.requests||[];return a}
+ function save(a){try{localStorage.setItem(AK,JSON.stringify(a))}catch(e){}}
+ function mine(a){var id;try{id=localStorage.getItem(MK)}catch(e){}return a.requests.filter(function(r){return String(r.id)===id})[0]}
+ var g=document.getElementById('gate'),b=document.getElementById('gbody');
+ function draw(){
+  var a=load(),r=mine(a);document.getElementById('gfee').textContent=a.fee;
+  if(r&&r.status==='approved'){g.hidden=true;return}
+  g.hidden=false;
+  if(r&&r.status==='pending'){b.innerHTML='<div class="st wait">Payment submitted. Waiting for the administrator to approve it.</div><button class="btn" style="width:100%" id="chk">Check status</button>';document.getElementById('chk').onclick=draw;return}
+  var h='';
+  if(r&&r.status==='rejected')h+='<div class="st no">Your payment was not approved. Check the code and try again.</div>';
+  h+='<ol><li>Send KSh '+a.fee+' by M-Pesa to:<div class="pay">'+(a.payee?esc(a.payee):'Payment number not set yet. Ask the administrator.')+'</div></li><li>Enter your details and the M-Pesa confirmation code from the SMS.</li></ol>'+
+   '<form id="gform"><input class="field" id="gn" placeholder="Your name" required maxlength="60"><input class="field" id="gp" type="tel" placeholder="Phone you paid from" required maxlength="20"><input class="field" id="gc" placeholder="M-Pesa code (e.g. ABC1D2EFGH)" required maxlength="12" style="text-transform:uppercase"><button class="btn" type="submit">Submit for approval</button></form>';
+  b.innerHTML=h;
+  document.getElementById('gform').onsubmit=function(e){e.preventDefault();
+   var a2=load(),id=Date.now();
+   a2.requests.push({id:id,name:document.getElementById('gn').value.trim(),phone:document.getElementById('gp').value.trim(),code:document.getElementById('gc').value.trim().toUpperCase(),amount:a2.fee,status:'pending',at:new Date().toISOString()});
+   save(a2);try{localStorage.setItem(MK,String(id))}catch(x){}draw()};
+ }
+ draw();
+})();
+let signIn=false;
+function toggleAuth(e){
+ e.preventDefault(); signIn=!signIn;
+ document.getElementById('formTitle').textContent=signIn?'Welcome back':'Create account';
+ document.getElementById('formIntro').textContent=signIn?'Sign in to continue learning.':'Join cashflow.site and meet the language-learning community.';
+ document.getElementById('submitBtn').textContent=signIn?'Sign in →':'Create account →';
+ document.querySelector('#signup input[placeholder="Username"]').style.display=signIn?'none':'block';
+ document.querySelector('#signup select').style.display=signIn?'none':'block';
+ document.querySelector('#signup input[type="tel"]').style.display=signIn?'none':'block';
+ document.querySelector('#signup input[type="password"]').autocomplete=signIn?'current-password':'new-password';
+ document.querySelector('.switch').innerHTML=signIn?'New here? <a href="#" id="switch">Create account</a>':'Already have an account? <a href="#" id="switch">Sign in</a>';
+ document.getElementById('switch').addEventListener('click',toggleAuth);
+}
+document.getElementById('switch').addEventListener('click',toggleAuth);
+document.getElementById('signup').addEventListener('submit',e=>{e.preventDefault();notice('This is a front-end demo. Secure account creation needs a backend and database.');});
+</script>
+
+</html>
